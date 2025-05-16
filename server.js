@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root', // MySQL kullanıcı adınızı buraya girin
-    password: '12345678', // MySQL şifrenizi buraya girin
+    password: '00000000', // MySQL şifrenizi buraya girin
     database: 'spotify'
 });
 
