@@ -1,0 +1,180 @@
+/* Genel Stil */
+/* Form elemanlarını düzenle */
+.form-group {
+    margin-bottom: 10px; /* Her bir form grubu arasına 10 piksel boşluk bırak */
+}
+
+/* Etiketler ve giriş alanlarını düzenle */
+.form-group label,
+.form-group input {
+    display: block; /* Etiketler ve giriş alanları blok elemanlar olarak görünsün */
+}
+
+.form-group label {
+    width: 200px; /* Etiketlerin sabit bir genişliği olsun */
+    float: left; /* Etiketleri soldan sağa hizala */
+}
+
+.form-group input {
+    width: calc(100% - 210px); /* Giriş alanlarının genişliği dinamik olsun */
+    float: left; /* Giriş alanlarını soldan sağa hizala */
+    margin-left: 10px; /* Giriş alanlarının sol tarafına 10 piksel boşluk bırak */
+}
+
+/* Submit butonunu ayrı bir satıra yerleştir */
+#addTrackForm input[type="submit"] {
+    clear: both; /* Submit butonundan sonra alt satıra geç */
+}
+body {
+    font-family: 'Circular Std', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 30px;
+    font-family: 'Poppins', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+}
+
+header {
+    display: flex;
+    align-items: center;
+   
+}
+
+header img{
+    
+    width: 60px;
+    padding-right: 10px;
+}
+
+.boxes{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-items: flex-start;
+    background-color: #181818;
+    padding: 7px;
+    margin: 20px;
+    border-radius: 20px;
+    
+}
+
+
+.boxes1{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-items: flex-start;
+    background-color: #181818;
+    padding: 7px;
+    margin: 20px;
+    border-radius: 20px;
+
+}
+
+.boxes2{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-items: flex-start;
+    background-color: #181818;
+    padding: 7px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.boxes2 button{
+    margin: 15px;
+}
+
+
+
+/* Başlıklar */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin: 10px;
+}
+
+/* Linkler */
+a {
+    color: #1db954;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Butonlar */
+button {
+    background-color: #1db954;
+    color: #ffffff;
+    border: none;
+    border-radius: 500px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1ed760;
+}
+
+/* Kartlar */
+.card {
+    background-color: #181818;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Giriş Alanları */
+input, textarea {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    margin: 10px;
+}
+
+input:focus, textarea:focus {
+    border-color: #1db954;
+    outline: none;
+}
+
+/* Menü */
+.navbar {
+    background-color: #181818;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar a {
+    color: #ffffff;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
+    color: #1db954;
+}
+
+/* Flexbox Layout */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Footer */
+footer {
+    background-color: #181818;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}

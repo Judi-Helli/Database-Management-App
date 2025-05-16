@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Spotify Album Manager</title>
+</head>
+
+<body>
+    <header>
+        <img src=".\img\spotifyicon.png" alt="img">
+        <h1>Spotify Album Manager</h1>
+    </header>
+    <div class="boxes2">
+        <h2>Get All Albums</h2>
+        <button onclick="window.location.href='/albums'">Get All Albums</button>
+    </div>
+    <div class="boxes">
+        <h2>Get Album by Name</h2>
+        <form action="/album" method="get">
+            <label for="albumName">Album Name:</label>
+            <input type="text" id="albumName" name="name">
+            <button type="submit">Get Album</button>
+        </form>
+    </div>
+    <div class="boxes2">
+        <h2>Get All Artists</h2>
+        <button onclick="window.location.href='/artists'">Get All Artists</button>
+    </div>
+    <div class="boxes">
+        <h2>Get Artist by Name</h2>
+        <form action="/artist" method="get">
+            <label for="artistName">Artist Name:</label>
+            <input type="text" id="artistName" name="name">
+            <button type="submit">Get Artist</button>
+        </form>
+    </div>
+    <div class="boxes2">
+        <h2>Get All Tracks</h2>
+        <button onclick="window.location.href='/tracks'">Get All Tracks</button>
+    </div>
+    <div class="boxes">
+        <h2>Get Track by Name</h2>
+        <form action="/track" method="get">
+            <label for="trackName">Track Name:</label>
+            <input type="text" id="trackName" name="name">
+            <button type="submit">Get Track</button>
+        </form>
+    </div>
+
+    <div id="content"></div>
+
+    <div class="boxes">
+        <h2>Retrieve Album for Track</h2>
+        <form id="getAlbumForTrackForm" action="/getAlbumForTrack" method="get">
+            <label for="getTrackId">Track ID:</label>
+            <input type="text" id="getTrackId" name="trackId">
+            <button type="submit">Retrieve Album</button>
+        </form>
+    </div>
+    <div class="boxes2">
+        <h2>Get Albums by Year</h2>
+        <form id="albumsByYearForm" action="/albumsByYear" method="get">
+            <label for="releaseYear">Release Year:</label>
+            <select id="releaseYear" name="year"></select>
+            <button type="submit">Get Albums</button>
+        </form>
+    </div>
+
+    <script>
+        // Fetch all distinct years when the page loads
+        fetch('/albumYears')
+            .then(response => response.json())
+            .then(years => {
+                // Populate the dropdown menu with the fetched years
+                let releaseYearSelect = document.getElementById('releaseYear');
+                years.forEach(year => {
+                    let option = document.createElement('option');
+                    option.value = year;
+                    option.text = year;
+                    releaseYearSelect.add(option);
+                });
+            });
+    </script>
+
+    <div class="boxes2">
+        <h2>Add New Album</h2>
+        <button id="addAlbumButton">Add New Album</button>
+
+        <form id="addalbumForm" action="/add-album" method="post" style="display: none;">
+            <label for="albumId">Album ID:</label>
+            <input type="text" id="albumId" name="albumId">
+            <label for="albumName">Album Name:</label>
+            <input type="text" id="albumName" name="albumName">
+            <label for="albumPopularity">Album Popularity:</label>
+            <input type="number" id="albumPopularity" name="albumPopularity">
+            <label for="albumType">Album Type:</label>
+            <input type="text" id="albumType" name="albumType">
+            <label for="totalTracks">Total Tracks:</label>
+            <input type="number" id="totalTracks" name="totalTracks">
+            <label for="durationSec">Duration (Seconds):</label>
+            <input type="number" id="durationSec" name="durationSec">
+            <label for="durationMs">Duration (Milliseconds):</label>
+            <input type="number" id="durationMs" name="durationMs">
+            <button type="submit">Add Album</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('addAlbumButton').addEventListener('click', function () {
+            var form = document.getElementById('addalbumForm');
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        });
+    </script>
+
+    <div class="boxes2">
+        <h2>Add New Track</h2>
+        <button id="addTrackButton">Add New Track</button>
+
+        <form id="addTrackForm" action="/add-track" method="post" style="display: none;">
+            <label for="trackId">Track ID:</label>
+            <input type="text" id="trackId" name="trackId">
+            <label for="albumId">Album ID:</label>
+            <input type="text" id="albumId" name="albumId">
+            <label for="trackName">Track Name:</label>
+            <input type="text" id="trackName" name="trackName">
+            <label for="trackNumber">Track Number:</label>
+            <input type="number" id="trackNumber" name="trackNumber">
+            <label for="acousticness">Acousticness:</label>
+            <input type="number" id="acousticness" name="acousticness">
+            <label for="analysisUrl">Analysis URL:</label>
+            <input type="text" id="analysisUrl" name="analysisUrl">
+            <label for="danceability">Danceability:</label>
+            <input type="number" id="danceability" name="danceability">
+            <label for="energy">Energy:</label>
+            <input type="number" id="energy" name="energy">
+            <label for="instrumentalness">Instrumentalness:</label>
+            <input type="number" id="instrumentalness" name="instrumentalness">
+            <label for="liveness">Liveness:</label>
+            <input type="number" id="liveness" name="liveness">
+            <label for="loudness">Loudness:</label>
+            <input type="number" id="loudness" name="loudness">
+            <label for="speechiness">Speechiness:</label>
+            <input type="number" id="speechiness" name="speechiness">
+            <label for="tempo">Tempo:</label>
+            <input type="number" id="tempo" name="tempo">
+            <label for="timeSignature">Time Signature:</label>
+            <input type="number" id="timeSignature" name="timeSignature">
+            <label for="trackHref">Track Href:</label>
+            <input type="text" id="trackHref" name="trackHref">
+            <label for="uri">URI:</label>
+            <input type="text" id="uri" name="uri">
+            <label for="valence">Valence:</label>
+            <input type="number" id="valence" name="valence">
+            <label for="trackPopularity">Track Popularity:</label>
+            <input type="number" id="trackPopularity" name="trackPopularity">
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+    <script>
+        document.getElementById('addTrackButton').addEventListener('click', function () {
+            var form = document.getElementById('addTrackForm');
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        });
+    </script>
+
+
+    <div class=" boxes">
+        <h2>Delete Album Data</h2>
+        <form id="deleteAlbumForm" action="/deleteAlbum" method="post">
+            <label for="deleteAlbumId">Album ID:</label>
+            <input type="text" id="deleteAlbumId" name="deleteId">
+            <button type="submit">Delete Album</button>
+        </form>
+    </div>
+
+    <!-- <div class="boxes">
+        <h2>Delete Track Data</h2>
+        <form id="deleteTrackForm" action="/deleteTrack" method="post">
+        <label for="deleteTrackId">Track ID:</label>
+        <input type="text" id="deleteTrackId" name="deleteId">
+        <button type="submit">Delete Track</button>
+        </form>
+    </div> -->
+
+    <div class="boxes">
+        <h2>Delete Track Data</h2>
+        <form id="deleteTrackForm" action="/deleteTrack" method="post">
+            <label for="deleteTrackId">Track ID:</label>
+            <input type="text" id="deleteTrackId" name="deleteId">
+            <button type="submit">Delete Track</button>
+        </form>
+    </div>
+
+    <div class="boxes1">
+        <h2>Update Track Data</h2>
+        <form id="updateTrackForm" action="/updateTrack" method="post">
+            <label for="updateTrackId">Track ID:</label>
+            <input type="text" id="updateTrackId" name="updateId">
+            <label for="updateTrackField">Field:</label>
+            <input type="text" id="updateTrackField" name="updateField">
+            <label for="updateTrackValue">New Value:</label>
+            <input type="text" id="updateTrackValue" name="updateValue">
+            <button type="submit">Update Track</button>
+        </form>
+    </div>
+    <script>
+        function fetchAlbums() {
+            fetch('/albums')
+                .then(response => response.json())
+                .then(data => {
+                    let content = document.getElementById('content');
+                    content.innerHTML = '<h3>Albums</h3>' + JSON.stringify(data, null, 2);
+                });
+        }
+
+        function fetchArtists() {
+            fetch('/artists')
+                .then(response => response.json())
+                .then(data => {
+                    let content = document.getElementById('content');
+                    content.innerHTML = '<h3>Artists</h3>' + JSON.stringify(data, null, 2);
+                });
+        }
+
+        function fetchTracks() {
+            fetch('/tracks')
+                .then(response => response.json())
+                .then(data => {
+                    let content = document.getElementById('content');
+                    content.innerHTML = '<h3>Tracks</h3>' + JSON.stringify(data, null, 2);
+                });
+        }
+    </script>
+</body>
+
+</html>
